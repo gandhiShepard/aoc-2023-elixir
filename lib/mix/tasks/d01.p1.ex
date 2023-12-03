@@ -5,7 +5,6 @@ defmodule Mix.Tasks.D01.P1 do
 
   @shortdoc "Day 01 Part 1"
   def run(args) do
-    # input = AdventOfCode.Input.get!(1, 2023)
     input = """
     four82nine74
     hlpqrdh3
