@@ -52,7 +52,7 @@ defmodule AdventOfCode.Day01 do
   def part2(<<@newline, input::binary>>, nil, _, sum), do: raise("Unexpected row without numbers")
 
   def part2(<<@newline, input::binary>>, first, last, sum),
-    do: part2(input, nil, nil, sum + dbg(10 * first + last))
+    do: part2(input, nil, nil, sum + 10 * first + last)
 
   def part2(<<_, input::binary>>, first, last, sum), do: part2(input, first, last, sum)
   def part2(<<>>, _, _, sum), do: sum
