@@ -32,7 +32,7 @@ defmodule AdventOfCode.Day01 do
       "eight",
       "nine"
     ]),
-    fn {n, numberstring} ->
+    fn {n, numberstring = <<_, rest_of_numberstring::binary>>} ->
       d = n + ?0
 
       def part2(<<unquote(d), input::binary>>, nil, nil, sum),
@@ -42,10 +42,10 @@ defmodule AdventOfCode.Day01 do
         do: part2(input, first, unquote(n), sum)
 
       def part2(unquote(numberstring) <> <<input::binary>>, nil, nil, sum),
-        do: part2(input, unquote(n), unquote(n), sum)
+        do: part2(unquote(rest_of_numberstring) <> input, unquote(n), unquote(n), sum)
 
       def part2(unquote(numberstring) <> <<input::binary>>, first, _last, sum),
-        do: part2(input, first, unquote(n), sum)
+        do: part2(unquote(rest_of_numberstring) <> input, first, unquote(n), sum)
     end
   )
 
