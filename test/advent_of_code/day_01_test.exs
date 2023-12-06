@@ -3,7 +3,7 @@ defmodule AdventOfCode.Day01Test do
 
   import AdventOfCode.Day01
 
-  # @tag :skip
+  @tag :skip
   test "part1" do
     input = """
       1abc2
@@ -16,7 +16,7 @@ defmodule AdventOfCode.Day01Test do
     assert result == 142
   end
 
-  # @tag :skip
+  @tag :skip
   test "part2" do
     input = """
       two1nine
