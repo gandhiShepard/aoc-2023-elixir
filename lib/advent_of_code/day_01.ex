@@ -5,4 +5,3 @@ defmodule AdventOfCode.Day01 do
   def part2(input) do
   end
 end
-
