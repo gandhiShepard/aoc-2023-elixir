@@ -13,12 +13,17 @@ defmodule AdventOfCode.Day03 do
   """
 
   @special_chars ~w[- # = * + @ $ & / %]
-  @numbers ~w[0 1 2 3 4 5 6 7 8 9]
 
   def part1(input) do
     input
     |> process_char()
     |> find_adjacent_numbers()
+  end
+
+  def part2(input) do
+    input
+    |> process_char()
+    |> find_gears()
   end
 
   defp process_char(
@@ -30,35 +35,35 @@ defmodule AdventOfCode.Day03 do
        )
 
   defp process_char(
-         <<current_number::binary-size(1), rest::binary>>,
+         <<current_number, rest::binary>>,
          current_position,
          {0, []},
          number_map,
          special_chars
        )
-       when current_number in @numbers,
+       when current_number in ?0..?9,
        do:
          process_char(
            rest,
            increment_position(current_position),
-           {String.to_integer(current_number), [current_position]},
+           {current_number - ?0, [current_position]},
            number_map,
            special_chars
          )
 
   defp process_char(
-         <<current_number::binary-size(1), rest::binary>>,
+         <<current_number, rest::binary>>,
          current_position,
          {number, coords},
          number_map,
          special_chars
        )
-       when current_number in @numbers,
+       when current_number in ?0..?9,
        do:
          process_char(
            rest,
            increment_position(current_position),
-           {10 * number + String.to_integer(current_number), [current_position | coords]},
+           {10 * number + (current_number - ?0), [current_position | coords]},
            number_map,
            special_chars
          )
@@ -200,10 +205,4 @@ defmodule AdventOfCode.Day03 do
   defp left_down({x, y}, map), do: Map.get(map, {x - 1, y + 1}, 0)
   defp down({x, y}, map), do: Map.get(map, {x, y + 1}, 0)
   defp right_down({x, y}, map), do: Map.get(map, {x + 1, y + 1}, 0)
-
-  def part2(input) do
-    input
-    |> process_char()
-    |> find_gears()
-  end
 end
