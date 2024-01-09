@@ -35,7 +35,7 @@ defmodule AdventOfCode.Day03Test do
 
   # @tag :skip
   test "part2" do
-        input = """
+    input = """
     467..114..
     ...*......
     ..35..633.
@@ -50,6 +50,6 @@ defmodule AdventOfCode.Day03Test do
 
     result = part2(input)
 
-    assert result == 467835
+    assert result == 467_835
   end
 end

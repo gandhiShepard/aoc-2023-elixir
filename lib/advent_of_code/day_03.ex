@@ -103,7 +103,7 @@ defmodule AdventOfCode.Day03 do
 
   defp find_adjacent_numbers({map, list}) do
     Enum.reduce(list, 0, fn
-     {_spec_char, coord}, acc ->
+      {_spec_char, coord}, acc ->
         look_up(coord, map) + left(coord, map) + right(coord, map) + look_down(coord, map) + acc
     end)
   end
@@ -133,7 +133,9 @@ defmodule AdventOfCode.Day03 do
     Enum.reduce(list, 0, fn
       {"*", coord}, acc ->
         look_around(coord, map) + acc
-      {_, _coords}, acc -> acc
+
+      {_, _coords}, acc ->
+        acc
     end)
   end
 
@@ -163,7 +165,6 @@ defmodule AdventOfCode.Day03 do
     end
   end
 
-
   defp look_around(coord, map) do
     [
       left(coord, map),
@@ -172,15 +173,15 @@ defmodule AdventOfCode.Day03 do
       down_check(coord, map)
     ]
     |> List.flatten()
-    |> Enum.reject(& &1 == 0)
+    |> Enum.reject(&(&1 == 0))
     |> then(fn
       [x, x] -> x * x
       [x, y] -> x * y
       _ -> 0
     end)
+
     # |> dbg()
   end
-
 
   defp left_up({x, y}, map), do: Map.get(map, {x - 1, y - 1}, 0)
   defp up({x, y}, map), do: Map.get(map, {x, y - 1}, 0)
